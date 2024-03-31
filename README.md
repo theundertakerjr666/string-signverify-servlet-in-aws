@@ -61,3 +61,19 @@ mvn archetype:generate -DgroupId=com.justin.keywebapp \
       -DarchetypeArtifactId=maven-archetype-webapp \
       -Dversion=1.0-SNAPSHOT \
       -DinteractiveMode=false
+
+
+
+Generate keypair DER  form for Java
+openssl genrsa -out rsa_key1.pem 2048
+openssl genrsa -out rsa_key2.pem 2048
+openssl genrsa -out rsa_key3.pem 2048
+
+
+openssl pkcs8 -topk8 -inform PEM -outform DER -in rsa_key1.pem -out private_key1.der -nocrypt
+openssl pkcs8 -topk8 -inform PEM -outform DER -in rsa_key2.pem -out private_key2.der -nocrypt
+openssl pkcs8 -topk8 -inform PEM -outform DER -in rsa_key3.pem -out private_key3.der -nocrypt
+
+openssl rsa -in rsa_key1.pem -pubout -outform DER -out public_key1.der
+openssl rsa -in rsa_key2.pem -pubout -outform DER -out public_key2.der
+openssl rsa -in rsa_key3.pem -pubout -outform DER -out public_key3.der
